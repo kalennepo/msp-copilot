@@ -1,8 +1,8 @@
 # MSP Ops Copilot
 
 MSP Ops Copilot is a Spring Boot backend that models how an IT or MSP tool could
-ingest support tickets, triage them asynchronously, and suggest standardized
-resolution steps (“runbooks”), while keeping a full audit trail.
+ingest support tickets, triage them, and suggest resolution 
+steps (“runbooks”), while keeping a full audit trail.
 
 ## Features
 - REST API for ticket ingestion
