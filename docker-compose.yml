@@ -1,0 +1,16 @@
+# docker-compose.yml
+services:
+  db:
+    image: postgres:16
+    container_name: mspcopilot-db
+    environment:
+      POSTGRES_DB: mspcopilot
+      POSTGRES_USER: mspcopilot
+      POSTGRES_PASSWORD: mspcopilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_mspcopilot:/var/lib/postgresql/data
+
+volumes:
+  pgdata_mspcopilot:
