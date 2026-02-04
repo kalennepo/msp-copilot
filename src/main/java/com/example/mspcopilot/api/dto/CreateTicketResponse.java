@@ -2,4 +2,4 @@ package com.example.mspcopilot.api.dto;
 
 import java.util.UUID;
 
-public record CreateTicketResponse(UUID jobId) {}
+public record CreateTicketResponse(UUID ticketId, UUID jobId) {}

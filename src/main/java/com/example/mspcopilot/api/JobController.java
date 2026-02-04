@@ -21,7 +21,7 @@ public class JobController {
   }
 
   @GetMapping("/{id}")
-  public JobResponse get(@PathVariable UUID id) {
+  public JobResponse get(@PathVariable("id") UUID id) {
     Job j = jobRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Job not found: " + id));
     return new JobResponse(
         j.getId(), j.getTicketId(), j.getType(), j.getStatus(),

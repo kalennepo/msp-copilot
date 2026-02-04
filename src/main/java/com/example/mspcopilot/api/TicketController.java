@@ -36,14 +36,14 @@ public class TicketController {
 
   @PostMapping
   public CreateTicketResponse create(@Valid @RequestBody CreateTicketRequest req) {
-    UUID jobId = ticketService.createTicketAndEnqueueTriage(
-        req.title(), req.description(), req.requesterEmail(), req.priority()
+    var res = ticketService.createTicketAndEnqueueTriage(
+      req.title(), req.description(), req.requesterEmail(), req.priority()
     );
-    return new CreateTicketResponse(jobId);
+    return new CreateTicketResponse(res.ticketId(), res.jobId());
   }
 
   @GetMapping("/{id}")
-  public TicketResponse get(@PathVariable UUID id) {
+  public TicketResponse get(@PathVariable("id") UUID id) {
     Ticket t = ticketRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Ticket not found: " + id));
     return new TicketResponse(
         t.getId(), t.getTitle(), t.getDescription(), t.getRequesterEmail(),
