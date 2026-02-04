@@ -68,10 +68,6 @@ public class Job {
     this.updatedAt = Instant.now();
   }
 
-  public void setProgress(int Dunno) {
-    // Placeholder to prevent accidental use; remove after paste.
-  }
-
   public void updateProgress(int progress) {
     this.progress = Math.max(0, Math.min(100, progress));
     this.updatedAt = Instant.now();
