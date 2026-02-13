@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API = "http://localhost:8080/api";
+const API = "/api";
 
 function pretty(ts) {
   try { return new Date(ts).toLocaleString(); } catch { return ts; }
@@ -52,10 +52,14 @@ export default function App() {
   }
 
   useEffect(() => {
-    loadTickets();
-    const id = setInterval(loadTickets, 2000); // poll
-    return () => clearInterval(id);
+    const t = setTimeout(() => loadTickets(), 0);
+    const id = setInterval(() => loadTickets(), 2000);
+    return () => {
+      clearTimeout(t);
+      clearInterval(id);
+    };
   }, []);
+
 
   useEffect(() => {
     if (!selectedTicket?.id) return;
@@ -122,7 +126,7 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", padding: 16, maxWidth: 1100, margin: "0 auto" }}>
-      <h1 style={{ marginBottom: 8 }}>MSP Ops Copilot (MVP)</h1>
+      <h1 style={{ marginBottom: 8 }}>MSP Ops Copilot</h1>
       <p style={{ marginTop: 0, color: "#666" }}>
         Create tickets → async triage → audit trail. Backend: Spring Boot + Postgres + Flyway.
       </p>
